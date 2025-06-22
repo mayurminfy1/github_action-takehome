@@ -15,6 +15,7 @@ jobs:
     permissions:
       contents: read
       packages: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -37,7 +38,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: |
+            ${{ env.IMAGE_NAME }}:main
+            ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             APP_VERSION=${{ github.sha }}
@@ -46,6 +49,7 @@ jobs:
     name: Deploy to EC2
     needs: build
     runs-on: ubuntu-latest
+
     steps:
       - name: Deploy over SSH
         uses: appleboy/ssh-action@v1.0.3
@@ -56,8 +60,8 @@ jobs:
           port: 22
           script: |
             echo ${{ secrets.GITHUB_TOKEN }} | sudo docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
-            sudo docker pull ${{ env.IMAGE_NAME }}@${{ steps.meta.outputs.digest }}
+            sudo docker pull ${{ env.IMAGE_NAME }}:main
             sudo docker stop my-app-container || true
             sudo docker rm my-app-container || true
-            sudo docker run -d --name my-app-container --restart always -p 3000:3000 ${{ env.IMAGE_NAME }}@${{ steps.meta.outputs.digest }}
+            sudo docker run -d --name my-app-container --restart always -p 3000:3000 ${{ env.IMAGE_NAME }}:main
             sudo docker image prune -a -f

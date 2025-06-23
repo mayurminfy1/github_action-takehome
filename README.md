@@ -57,6 +57,74 @@ Add these secrets under **GitHub > Settings > Actions > Secrets and variables > 
 
 ---
 
+# ✅ Steps to Implement CI/CD with GitHub Actions, Docker & EC2
+
+---
+
+## 1️⃣ Setup Node.js App
+
+- Created `GITHUB-ACTION/` folder.
+- Wrote a basic Express server in `app.js`.
+- Initialized `package.json` and added `.gitignore`.
+
+---
+
+## 2️⃣ Dockerize the App
+
+- Created a `Dockerfile` using `node:alpine`.
+- Installed dependencies and exposed port `3000`.
+
+---
+
+## 3️⃣ Push to GitHub
+
+- Pushed code to GitHub repo: `github_action-takehome`.
+
+---
+
+## 4️⃣ Setup GitHub Actions
+
+- Added `.github/workflows/cicd-pipeline.yml`.
+- Defined `build` (push to GHCR) and `deploy` (EC2 SSH) jobs.
+
+---
+
+## 5️⃣ Configure Secrets
+
+Added in GitHub repo settings:
+
+- `EC2_HOST` → EC2 IP (`43.205.99.236`)
+- `EC2_USERNAME` → `ec2-user`
+- `EC2_SSH_KEY` → Contents of `.pem` key
+
+---
+
+## 6️⃣ Launch EC2 Instance
+
+- Launched **Amazon Linux 2023**, **t2.micro**.
+- Opened ports `22` and `3000`.
+- Installed Docker manually using `yum`.
+
+---
+
+## 7️⃣ Trigger CI/CD
+
+- `git push` triggered GitHub Actions:
+  - Built & pushed Docker image to GHCR.
+  - Logged into EC2 and deployed the container.
+  
+---
+
+
+## ✅ Fixes & Debugging
+
+- Fixed missing `"start"` script in `package.json`.
+- Used `:main` tag to pull latest Docker image.
+
+---
+
+
+
 ### 📸 Screenshots
 
 | Description                   | Preview |
@@ -76,27 +144,6 @@ After successful deployment, visit your application in the browser using the EC2
 
 🔗 **[http://43.205.99.236:3000/](http://43.205.99.236:3000/)**
 
----
-
-### 💼 Real-World Relevance
-
-This is exactly how modern teams build, test, and deploy applications — automatically, reliably, and securely.
-
-You're now ready to apply this knowledge to real-world projects or take your DevOps learning even further! 🚀
-
----
-
-### 🧠 What You Learned
-
-By completing this hands-on capstone assignment, you’ve learned how to:
-
-- **Containerize** and ship applications efficiently using Docker.
-- **Automate builds and deployments** with GitHub Actions workflows.
-- **Manage secrets securely** within GitHub repositories.
-- **Use EC2 as a staging or production environment** for your applications.
-- Understand how modern **CI/CD pipelines** operate in professional DevOps environments.
-
----
 
 
 

@@ -1,4 +1,5 @@
-# 🚀 GitHub Actions CI/CD Pipeline
+# Github-Actions Take home Assignment
+##  GitHub Actions CI/CD Pipeline
 
 > A fully automated pipeline that builds, containers, and deploys a Node.js web app to an EC2 instance using GitHub Actions, Docker, and GitHub Container Registry (GHCR).
 
@@ -14,12 +15,12 @@ GITHUB-ACTION/
 ├── .gitignore                
 └── .github/
     └── workflows/
-        └── cicd-pipeline.yml  GitHub Actions CI/CD workflow
+        └── cicd-pipeline.yml  
 ```
 
 ---
 
-## 🧠 Project Learning Outcomes
+##  Project Learning Outcomes
 
 ### 🔧 Concepts You’ll Master:
 
@@ -44,13 +45,13 @@ GITHUB-ACTION/
 | Docker Installed  | Manually using `yum`         |
 ---
 
-## 🔐 GitHub Repository Secrets
+##  GitHub Repository Secrets
 
 Add these secrets under **GitHub > Settings > Actions > Secrets and variables > Repository secrets**:
 
 | Secret Name     | Description                                     |
 |------------------|-------------------------------------------------|
-| `EC2_HOST`       | http://43.205.99.236/              |
+| `EC2_HOST`       |  43.205.99.236            |
 | `EC2_USERNAME`   | `ec2-user`  |
 | `EC2_SSH_KEY`    | The **entire content** of your `.pem` key file (confidential) |
 
@@ -89,11 +90,11 @@ You're now ready to apply this knowledge to real-world projects or take your Dev
 
 By completing this hands-on capstone assignment, you’ve learned how to:
 
-- 🐳 **Containerize** and ship applications efficiently using Docker.
-- ⚙️ **Automate builds and deployments** with GitHub Actions workflows.
-- 🔐 **Manage secrets securely** within GitHub repositories.
-- ☁️ **Use EC2 as a staging or production environment** for your applications.
-- 🧪 Understand how modern **CI/CD pipelines** operate in professional DevOps environments.
+- **Containerize** and ship applications efficiently using Docker.
+- **Automate builds and deployments** with GitHub Actions workflows.
+- **Manage secrets securely** within GitHub repositories.
+- **Use EC2 as a staging or production environment** for your applications.
+- Understand how modern **CI/CD pipelines** operate in professional DevOps environments.
 
 ---
 
